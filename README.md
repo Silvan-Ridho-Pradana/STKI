@@ -6,7 +6,9 @@
 * **Nama:** [SILVAN RIDHO PRADANA]
 * **NIM:** [A11.2022.14284]
 * **Kelompok:** A11.4703 
-* **Dosen:** Abu Salam, M.Kom 
+* **Dosen:** Abu Salam, M.Kom
+* **Streamlit:** https://uts-stki-14284.streamlit.app/
+
 
 ---
 
