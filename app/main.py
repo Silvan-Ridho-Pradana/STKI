@@ -5,21 +5,17 @@ import sys
 import pandas as pd
 import nltk  # <-- Impor NLTK di sini
 
-# --- FIX NLTK LookupError ---
-# (Download data paket yang diperlukan oleh NLTK)
-# Ini harus dijalankan sebelum 'import preprocess'
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    st.info("Downloading NLTK data (punkt)...")
+# --- FIX NLTK LookupError (Versi Paksa) ---
+# Langsung download paket yang diperlukan.
+# Ini mungkin berjalan setiap kali app restart, tapi menjamin ketersediaan.
+@st.cache_resource
+def download_nltk_data():
+    st.info("Memeriksa dan mengunduh data NLTK...")
     nltk.download('punkt')
-    nltk.download('punkt_tab')
-
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    st.info("Downloading NLTK data (stopwords)...")
     nltk.download('stopwords')
+    st.success("Data NLTK (punkt, stopwords) siap.")
+
+download_nltk_data()
 # --- End of Fix ---
 
 

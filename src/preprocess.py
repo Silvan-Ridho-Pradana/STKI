@@ -7,8 +7,8 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import string
 
 # --- Persiapan NLTK dan Sastrawi ---
-# (Blok download NLTK dihapus dari sini)
-# (Proses download sekarang ditangani oleh app/main.py)
+# (Logika download NLTK TIDAK ADA DI SINI)
+# (Sekarang ditangani oleh app/main.py)
 
 # Siapkan stemmer Sastrawi
 factory = StemmerFactory()
@@ -67,13 +67,24 @@ def preprocess_text(text):
     cleaned_text = clean(text)
     tokens = tokenize(cleaned_text)
     stopped_tokens = remove_stopwords(tokens)
-    stemmed_tokens = stem(stopped_tokens)
+    stemmed_tokens = stem(tokens)
     
     # Mengembalikan sebagai string yang sudah diproses
     return " ".join(stemmed_tokens)
 
 if __name__ == '__main__':
     # Contoh penggunaan modul jika dijalankan langsung
+    
+    # Pastikan data NLTK ada jika dijalankan langsung
+    try:
+        nltk.data.find('tokenizers/punkt')
+    except LookupError:
+        nltk.download('punkt')
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        nltk.download('stopwords')
+
     sample_text = "UIN Walisongo Semarang adalah universitas di Jawa Tengah. Didirikan tahun 1970."
     
     print("--- Teks Asli ---")
