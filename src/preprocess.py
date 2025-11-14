@@ -1,3 +1,4 @@
+%%writefile src/preprocess.py
 import re
 import nltk
 from nltk.tokenize import word_tokenize
@@ -6,17 +7,8 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import string
 
 # --- Persiapan NLTK dan Sastrawi ---
-
-# Download data NLTK (hanya perlu sekali)
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords')
+# (Blok download NLTK dihapus dari sini)
+# (Proses download sekarang ditangani oleh app/main.py)
 
 # Siapkan stemmer Sastrawi
 factory = StemmerFactory()
@@ -76,18 +68,18 @@ def preprocess_text(text):
     tokens = tokenize(cleaned_text)
     stopped_tokens = remove_stopwords(tokens)
     stemmed_tokens = stem(stopped_tokens)
-
+    
     # Mengembalikan sebagai string yang sudah diproses
     return " ".join(stemmed_tokens)
 
 if __name__ == '__main__':
     # Contoh penggunaan modul jika dijalankan langsung
     sample_text = "UIN Walisongo Semarang adalah universitas di Jawa Tengah. Didirikan tahun 1970."
-
+    
     print("--- Teks Asli ---")
     print(sample_text)
-
+    
     processed_text = preprocess_text(sample_text)
-
+    
     print("\n--- Teks Hasil Preprocessing ---")
     print(processed_text)

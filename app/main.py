@@ -1,7 +1,26 @@
+%%writefile app/main.py
 import streamlit as st
 import os
 import sys
 import pandas as pd
+import nltk  # <-- Impor NLTK di sini
+
+# --- FIX NLTK LookupError ---
+# (Download data paket yang diperlukan oleh NLTK)
+# Ini harus dijalankan sebelum 'import preprocess'
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    st.info("Downloading NLTK data (punkt)...")
+    nltk.download('punkt')
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    st.info("Downloading NLTK data (stopwords)...")
+    nltk.download('stopwords')
+# --- End of Fix ---
+
 
 # --- Setup Path ---
 # (Penting agar Streamlit bisa menemukan folder 'src')
@@ -105,7 +124,7 @@ if vsm_model:
                 st.subheader(f"#{i+1}: {doc_id}")
                 st.info(f"**Skor (Cosine Similarity): {score:.4f}**")
                 
-                # Ini adalah "template-based generator" sederhana [cite: 109]
+                # Ini adalah "template-based generator" sederhana
                 st.write(f"**Snippet:** {snippet}")
                 st.divider()
     
