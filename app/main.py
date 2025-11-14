@@ -12,6 +12,7 @@ import nltk  # <-- Impor NLTK di sini
 def download_nltk_data():
     st.info("Memeriksa dan mengunduh data NLTK...")
     nltk.download('punkt')
+    nltk.download('punkt_tab')
     nltk.download('stopwords')
     st.success("Data NLTK (punkt, stopwords) siap.")
 
