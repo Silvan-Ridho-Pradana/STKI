@@ -1,0 +1,5 @@
+nltk
+sastrawi
+scikit-learn
+streamlit
+pandas
