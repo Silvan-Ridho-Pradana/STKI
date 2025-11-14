@@ -13,6 +13,7 @@ try:
 except LookupError:
     st.info("Downloading NLTK data (punkt)...")
     nltk.download('punkt')
+    nltk.download('punkt_tab')
 
 try:
     nltk.data.find('corpora/stopwords')
